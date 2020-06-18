@@ -1,0 +1,26 @@
+{
+  "name": "-",
+  "version": "0.0.0",
+  "description": "Tests",
+  "main": "",
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "faker": "^4.1.0",
+    "uuid": "^3.4.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^7.0.1",
+    "nyc": "^15.0.0"
+  },
+  "nyc": {
+    "exclude": [
+      "tests"
+    ]
+  }
+}
