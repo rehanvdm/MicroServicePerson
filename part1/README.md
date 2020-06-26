@@ -1,6 +1,6 @@
 # MicroService Person
 
-##### REFER TO THIS => REPO FOR AN EXPLANATION OF HOW TO USE THIS REPO
+##### REFER TO THIS => https://github.com/rehanvdm/MicroService FOR AN EXPLANATION OF HOW TO USE THIS REPO
 
 This is a stock standard CDK project using TypeScript. 
 
