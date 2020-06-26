@@ -16,6 +16,7 @@ const audit_log = require('./data_schema/audit_log');
 const logger = new LambdaLog();
 logger.init(process.env.ENVIRONMENT);
 
+function delay(ms) { return new Promise((resolve, reject) => setTimeout(resolve, ms)); }
 
 exports.handler = async (event, context) =>
 {
@@ -23,13 +24,22 @@ exports.handler = async (event, context) =>
     logger.setTraceId(context.awsRequestId);
     logger.log("Init",process.env.ENVIRONMENT, process.env.VERSION, process.env.BUILD);
 
+    if(process.env.ENABLE_CHAOS === "true" && process.env.INJECT_LATENCY !== "false")
+    {
+        logger.info("Injecting Latency", process.env.INJECT_LATENCY);
+        await delay(process.env.INJECT_LATENCY);
+    }
+
+    if(process.env.ENABLE_CHAOS === "true" && process.env.INJECT_ERROR === "error")
+        throw new Error("This is a simulated/injected HARD error");
+
     let response = null;
     let apiClass;
 
     let auditRecord = new audit_log(audit_log.GetNewID(), logger.getTraceId(), null,
         null, null, null, null,
         null, "api", "MicroServicePerson::api", null,
-        null, moment().utc().format("YYYY-MM-DD HH:mm:ss.SSS"),
+        null, moment().utc().format("YYYY-MM-DD HH:mm:ss.SSS"), null,
         process.env.ENVIRONMENT, process.env.VERSION, process.env.BUILD);
 
     try

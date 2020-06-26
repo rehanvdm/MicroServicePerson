@@ -8,9 +8,9 @@
     "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",
-    "deploy": "tsc && cdk deploy --profile rehan",
-    "diff": "cdk diff --profile rehan",
-    "destroy": "cdk destroy * --profile rehan",
+    "deploy": "tsc && cdk deploy --profile rehan-demo",
+    "diff": "cdk diff --profile rehan-demo",
+    "destroy": "cdk destroy * --profile rehan-demo",
     "artillery-person-create": "artillery run ./test/load/person-create.yml",
     "artillery-ping-pong": "artillery run ./test/load/ping-pong.yml"
   },

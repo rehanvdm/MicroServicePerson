@@ -128,7 +128,7 @@ Helper.API_URL = "https://f08d33qq98.execute-api.us-east-1.amazonaws.com/prod";
 Helper.DYNAMO_TABLE = "MicroServicePerson-table";
 Helper.API_COMMON_URL = "https://2ce8m8h7ia.execute-api.us-east-1.amazonaws.com/prod";
 
-Helper.AWS_PROFILE_MAME = "rehan";
+Helper.AWS_PROFILE_MAME = "rehan-demo";
 Helper.AWS_PROFILE_REGION = "us-east-1";
 
 Helper.TEST_AGAINST__DEVELOPMENT = TEST_AGAINST__DEVELOPMENT;
