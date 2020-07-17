@@ -1,0 +1,18 @@
+{
+  "name": "person",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.695.0",
+    "aws-xray-sdk-core": "^3.1.0",
+    "axios": "^0.19.2",
+    "moment": "^2.26.0",
+    "uuid": "^8.1.0"
+  }
+}

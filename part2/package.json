@@ -1,0 +1,38 @@
+{
+  "name": "micro_service_person",
+  "version": "0.1.0",
+  "bin": {
+    "micro_service_person": "bin/micro_service_person.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "jest",
+    "deploy": "tsc && cdk deploy --profile rehan-demo",
+    "diff": "cdk diff --profile rehan-demo",
+    "destroy": "cdk destroy * --profile rehan-demo",
+    "artillery-person-create": "artillery run ./test/load/person-create.yml",
+    "artillery-ping-pong": "artillery run ./test/load/ping-pong.yml"
+  },
+  "devDependencies": {
+    "@aws-cdk/aws-cloudwatch-actions": "1.45.0",
+    "@aws-cdk/aws-sns": "1.45.0",
+    "@aws-cdk/aws-cloudwatch": "1.45.0",
+    "@aws-cdk/aws-logs": "1.45.0",
+    "@aws-cdk/aws-apigateway": "1.45.0",
+    "@aws-cdk/aws-dynamodb": "1.45.0",
+    "@aws-cdk/aws-lambda": "1.45.0",
+    "@aws-cdk/assert": "1.45.0",
+    "@types/jest": "^25.2.1",
+    "@types/node": "10.17.5",
+    "jest": "^25.5.0",
+    "ts-jest": "^25.3.1",
+    "aws-cdk": "1.45.0",
+    "ts-node": "^8.1.0",
+    "typescript": "~3.7.2"
+  },
+  "dependencies": {
+    "@aws-cdk/core": "1.45.0",
+    "source-map-support": "^0.5.16"
+  }
+}
