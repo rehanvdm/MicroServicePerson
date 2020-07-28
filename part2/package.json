@@ -15,6 +15,7 @@
     "artillery-ping-pong": "artillery run ./test/load/ping-pong.yml"
   },
   "devDependencies": {
+    "@aws-cdk/aws-iam": "1.45.0",
     "@aws-cdk/aws-cloudwatch-actions": "1.45.0",
     "@aws-cdk/aws-sns": "1.45.0",
     "@aws-cdk/aws-cloudwatch": "1.45.0",

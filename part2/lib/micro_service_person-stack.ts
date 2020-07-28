@@ -7,7 +7,7 @@ import logs = require('@aws-cdk/aws-logs');
 import cloudwatch = require('@aws-cdk/aws-cloudwatch');
 import sns = require('@aws-cdk/aws-sns');
 import cloudwatchactions = require('@aws-cdk/aws-cloudwatch-actions');
-
+import iam = require('@aws-cdk/aws-iam');
 
 export class MicroServicePersonStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps)
@@ -47,12 +47,18 @@ export class MicroServicePersonStack extends cdk.Stack {
                         INJECT_ERROR: "true",
                         INJECT_LATENCY: "5000",
 
-                        DYNAMO_TABLE: dynTable.tableName,
-                        API_COMMON_URL: ""
+                        DYNAMO_TABLE: dynTable.tableName
                       },
                       tracing: lambda.Tracing.ACTIVE
                     });
     dynTable.grantReadWriteData(apiLambda);
+
+    let eventPolicy = new iam.PolicyStatement({
+      effect: iam.Effect.ALLOW,
+      resources: ['*'], /* We want to use the default bus without having to lookup the ARN, so just using * for now, please specify for production implementations */
+      actions: ['events:PutEvents']
+    });
+    apiLambda.addToRolePolicy(eventPolicy);
 
     let apiName = id;
     let api = new apigateway.RestApi(this, id+"-api", {

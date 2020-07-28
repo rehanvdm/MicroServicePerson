@@ -105,7 +105,7 @@ class Helper
 
     /* Setting Environment variables for Lambda here when Testing Dev only */
     async SetEnvironmentVariables(environment, version, build, timeOut, enableChaos, injectError, injectLatency,
-                                    dynamoTable, apiCommonUrl)
+                                    dynamoTable)
     {
         /* Read these from a file */
         process.env.ENVIRONMENT =  environment;
@@ -117,16 +117,14 @@ class Helper
         process.env.INJECT_LATENCY = injectLatency;
 
         process.env.DYNAMO_TABLE = dynamoTable;
-        process.env.API_COMMON_URL = apiCommonUrl;
 
         process.env.AWS_XRAY_CONTEXT_MISSING = "LOG_ERROR"; /* If we don't have the X-Ray client installed when testing locally. */
         process.env.AWS_XRAY_LOG_LEVEL  = "silent"; /* Silent all logs/errors coming from X-Ray when testing locally */
     }
 }
 
-Helper.API_URL = "https://f08d33qq98.execute-api.us-east-1.amazonaws.com/prod";
-Helper.DYNAMO_TABLE = "MicroServicePerson-table";
-Helper.API_COMMON_URL = "https://2ce8m8h7ia.execute-api.us-east-1.amazonaws.com/prod";
+Helper.API_URL = " https://ee7z4tfut1.execute-api.us-east-1.amazonaws.com/prod";
+Helper.DYNAMO_TABLE = "MicroServicePerson-p2-table";
 
 Helper.AWS_PROFILE_MAME = "rehan-demo";
 Helper.AWS_PROFILE_REGION = "us-east-1";

@@ -10,7 +10,7 @@ const DynamoPerson = require('../dynamo/Person.js');
 
 const ApiBaseClass = require('./ApiBaseClass');
 
-const CommonApiV1 = require('../internal_apis/common-api-v1');
+const PersonEventsV1 = require('../event_bridge/person-events-v1');
 class Person extends ApiBaseClass
 {
     constructor(aws, awsXray)
@@ -18,8 +18,10 @@ class Person extends ApiBaseClass
         super();
 
         this.dynamo = new aws.DynamoDB({apiVersion: '2012-08-10', maxRetries: 6, retryDelayOptions: { base: 50} });
+        this.eventbridge = new aws.EventBridge();
+
         this.dynPerson = new DynamoPerson(this.dynamo, process.env.DYNAMO_TABLE);
-        this.commonApi = new CommonApiV1(awsXray, process.env.API_COMMON_URL);
+        this.personEvents = new PersonEventsV1(this.eventbridge, awsXray, "default");
     }
 
     async create(authUser, body)
@@ -36,7 +38,7 @@ class Person extends ApiBaseClass
 
         await this.dynPerson.Put(newPerson);
 
-        await this.commonApi.process_person_created(body.data.client_id, body.data.name);
+        await this.personEvents.person_created(body.data.client_id, body.data.name);
 
         return this.MethodReturn(newPerson);
     };

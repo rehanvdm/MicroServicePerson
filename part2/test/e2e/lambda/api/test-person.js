@@ -10,7 +10,7 @@ var helper = new Helper();
 
 let TimeOut = 30;
 
-// helper.TestAgainst = Helper.TEST_AGAINST__DEPLOYED;
+helper.TestAgainst = Helper.TEST_AGAINST__DEPLOYED;
 
 describe('Test Person - Positive', function ()
 {
@@ -18,7 +18,7 @@ describe('Test Person - Positive', function ()
     {
         await helper.SetEnvironmentVariables("prod", "1.0.0", "1", "25",
                                             "false", "error", "5000",
-                                             Helper.DYNAMO_TABLE, Helper.API_COMMON_URL);
+                                             Helper.DYNAMO_TABLE);
 
         helper.SetAWSSDKCreds(Helper.AWS_PROFILE_MAME, Helper.AWS_PROFILE_REGION);
     });
@@ -30,9 +30,10 @@ describe('Test Person - Positive', function ()
         let body = {
             "control": { },
             "data": {
-                "client_id": "f2710c82-4d7b-442d-91fd-cde5c8dd4c94",
-                "name": "Rehan",
-                "email": "rehan123456@gmail.com"
+                // "client_id": "f2710c82-4d7b-442d-91fd-cde5c8dd4c94",
+                "client_id": "2a7285b4-fa6c-4aef-8366-3c5318311dbb",
+                "name": "Rehan new 3",
+                "email": "rehan123456789@gmail.com"
             }
         };
 
